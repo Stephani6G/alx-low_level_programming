@@ -1,4 +1,5 @@
 #include<stdio.h>
+
 /**
 *main - prints the string in the function
 *description:using main function and printf
