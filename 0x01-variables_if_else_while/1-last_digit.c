@@ -2,10 +2,10 @@
 #include <time.h>
 #include <stdio.h>
 /**
- * main -This program will assign a random number to the variable 
+ * main -This program will assign a random number to the variable
  *
  * Description: using the main function
- *This program will assign a random number to the variable 
+ * This program will assign a random number to the variable
  * Return: 0
  */
 int main(void)
