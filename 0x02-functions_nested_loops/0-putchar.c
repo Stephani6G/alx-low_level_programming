@@ -1,10 +1,8 @@
 #include "main.h"
 /**
- * main-entry point for cod
- *
- * description - prints putchar a lot
- *
- * return : always 0 success
+ * main - Entry point
+ * Description - prints _putchar followed on a new line
+ * Return: Always 0 (Success)
  */
 
 int main(void)
@@ -18,5 +16,6 @@ int main(void)
 	_putchar('a');
 	_putchar('r');
 	_putchar('\n');
+
 	return (0);
 }
