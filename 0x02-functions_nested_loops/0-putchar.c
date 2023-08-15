@@ -4,6 +4,7 @@
  *description - prints putchar a lot
  *return : always 0 success
  */
+
 int main(void)
 {
 	_putchar('_');
