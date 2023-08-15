@@ -1,7 +1,9 @@
 #include "main.h"
 /**
  * main-entry point for cod
+ *
  * description - prints putchar a lot
+ *
  * return : always 0 success
  */
 
