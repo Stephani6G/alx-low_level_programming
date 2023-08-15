@@ -1,8 +1,8 @@
 #include "main.h"
 /**
  *main-entry point for cod
- *description - prints putchar
- *return : always 0
+ *description - prints putchar a lot
+ *return : always 0 success
  */
 int main(void)
 {
