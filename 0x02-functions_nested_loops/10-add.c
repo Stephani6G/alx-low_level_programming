@@ -3,7 +3,7 @@
 
 /**
  * main - check the code
- * add - Adds two intergers
+ * @add - Adds two intergers
  * @num1: The first interger to be added
  * @num2: The second interger to be added
  * Return: Always 0.
