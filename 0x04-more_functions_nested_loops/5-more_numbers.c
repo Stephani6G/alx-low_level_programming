@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * more_number 10 times the numbers, from 0 to 1
+ * more_numbers - 10 times the numbers, from 0 to 1
  * main - check the code
  *
  * Return: Always 0.
