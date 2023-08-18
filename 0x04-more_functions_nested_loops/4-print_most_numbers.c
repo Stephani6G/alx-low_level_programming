@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_most_numbers -a function that prints the numbers, from 0 
+ * print_most_numbers -a function that prints the numbers from 0
  * main - check the code
  *
  * Return: Always 0.
