@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdio.h>
 
 /**
@@ -18,3 +17,9 @@ void swap_int(int *a, int *b);
 	*b = temp;
 }
 
+int main(void)
+{
+	int a =98;
+	int b = 42;
+	return (0);
+}
