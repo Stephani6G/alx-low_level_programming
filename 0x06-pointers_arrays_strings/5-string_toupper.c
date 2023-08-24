@@ -2,7 +2,7 @@
 
 /**
  * string_toupper - hanges all lowercase letters of a string to uppercase
- * @a: Pointer to array 
+ * @a: Pointer to array
  *
  * Return: Array of UPPER chars
  */
