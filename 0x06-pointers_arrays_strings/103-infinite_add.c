@@ -23,7 +23,7 @@ char *infinite_add(char *n1, char *n2, char *r, int n)
 
 	while (x >= 0 && (y >= 0 || z >= 0))
 	{
-		add += (y < 0 ? '0' : n1:[y]) + (z < 0 ? '0' : n2[z]);
+		add += (y < 0 ? '0' : n1[y]) + (z < 0 ? '0' : n2[z]);
 		add -= 2 * '0';
 		r[x] = add % 10 + '0';
 		add /= 10;
