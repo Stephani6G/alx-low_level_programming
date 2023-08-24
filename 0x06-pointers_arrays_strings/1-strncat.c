@@ -25,6 +25,3 @@ char *_strncat(char *dest, char *src, int n)
 	return (dest);
 	_putchar('\n');
 }
-
-
-
