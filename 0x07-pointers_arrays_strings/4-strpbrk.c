@@ -2,16 +2,15 @@
 
 /**
  * _strpbrk - searches a string for any of a set of bytes
- * @s: string to check
- * @accept: 
- *
- * Return: pointer to byte in s that matches or NULL if no match
+ * @s: string
+ * @accept: gives bytes to s
+ * Return: pointer to the byte in s
  */
 char *_strpbrk(char *s, char *accept)
 {
-	unsigned int i, j;
+	unsigned int a, b;
 
-	for (i = 0; s[i]; i++)
+	for (i  0; s[a]; a++)
 	{
 		for (j = 0; accept[j]; b++)
 		{
