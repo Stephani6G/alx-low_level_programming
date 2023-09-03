@@ -10,9 +10,9 @@ char *_strpbrk(char *s, char *accept)
 {
 	unsigned int a, b;
 
-	for (i  0; s[a]; a++)
+	for (a = 0; s[a]; a++)
 	{
-		for (j = 0; accept[j]; b++)
+		for (b = 0; accept[b]; b++)
 		{
 			if (s[a] == accept[b])
 				break;
