@@ -2,8 +2,7 @@
 
 /**
  * main - check the code
- * jack_bauer - function that prints every minute of the day of Jack B
- * description - function that prints every minute of the da
+ * jack_bauer - function that prints every minute of the da
  * Return: Always 0.
  */
 void jack_bauer(void)
