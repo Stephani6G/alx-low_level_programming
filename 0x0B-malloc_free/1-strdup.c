@@ -17,16 +17,20 @@ char *_strdup(char *str)
 	if (str == NULL)
 		return (NULL);
 
-	for (i = 0; str[i] != 0 '\0'; i++)
-		;
+	while (str[i])
+		i++;
 
-	s = (char *)malloc(sizeof(char) * (i + 1));
+	s = malloc(sizeof(char) * (i + 1));
 
 	if (s == NULL)
 		return (NULL);
 
-	for (j = 0; j <= i; j++)
+	while (str[j])
+	{
 		s[j] = str[j];
+		j++;
+	}
 
+	s[j + 1] = 0;
 	return (s);
-
+}
