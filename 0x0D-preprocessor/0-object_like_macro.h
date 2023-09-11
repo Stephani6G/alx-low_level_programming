@@ -1,0 +1,5 @@
+#ifndef MACRO_NAMED_SIZE
+#define MACRO_NAMED_SIZE
+#define SIZE 1024
+
+#endif /*MACRO_NAMED_SIZE*/
