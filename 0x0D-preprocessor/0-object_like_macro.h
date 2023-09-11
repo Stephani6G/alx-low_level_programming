@@ -1,5 +1,1 @@
-#ifndef MACRO_NAMED_SIZE
-#define MACRO_NAMED_SIZE
-#define SIZE 1024
-
-#endif /*MACRO_NAMED_SIZE*/
+VimCrypt~03!J¤òÑGÄ¾´Âs}˜”$%Êz#W{‚…Üpl‹íxE˜_­Êë/–'{üd~@.¿¿X86Uî:®­~óQV3Ï_¸)Æâˆ´Ftæ
