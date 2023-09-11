@@ -1,1 +1,3 @@
-VimCrypt~03!\!†Î¬ö4î½B~vƒÂAÔ.‡€Rà3:¹ˆ/Ê&3—ˆ®$	¼¤,ÿqçr^‚Å”Ç	”ØÄ”³±b½`c«?Ä2\Ál2QªB£ñîFMÜ38ÓOýCf«)Yr†4"è$€mMuù?+}¾‰z(|üßãÎ6
+#ifndef SIZE
+#define SIZE 1024
+#endif /* end SIZE */
