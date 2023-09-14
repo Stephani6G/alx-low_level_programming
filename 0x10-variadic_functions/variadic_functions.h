@@ -10,7 +10,7 @@
 * @p: A function pointer to a function that prints
 */
 
-typedef struct print
+typedef struct printer
 {
 	char *s;
 	void (*p)(va_list);
