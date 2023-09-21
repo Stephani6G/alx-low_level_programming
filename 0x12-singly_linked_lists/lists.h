@@ -40,8 +40,14 @@ int _putchar(char c);
 /*first node*/
 void free_list(list_t *head);
 
-/*strdup*/
+/* strdup*/
 char *_strdup(const char *str);
+
+/* task 100*/
+void print_before_main(void) __attribute__ ((constructor));
+
+/*Prints the specified message before main is executed*/
+void print_before_main(void)
 
 
 #endif
