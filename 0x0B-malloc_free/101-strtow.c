@@ -3,7 +3,7 @@
 
 /**
  * wrdcnt - count  number of words in a string
- * @s: string to count words in 
+ * @s: string to count words in
  * Return:  number of words
  */
 
