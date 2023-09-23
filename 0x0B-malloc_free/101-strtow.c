@@ -1,96 +1,98 @@
 #include "main.h"
-#include <stdlib.h>
-
-void tokenize(char **word_array, char *input_str);
-void split(char **word_array, char *input_str, int start, int end, int index);
 
 /**
- * strtow - Splits a string into words.
- * @str: The string to split.
- *
- * Return: An array of strings (words), with the last element being NULL.
+ * len - returns length of string
+ * @str: string to be split
+ * Return: length of the string
  */
+
+int len(char *str)
+{
+	int len = 0;
+
+	if (str != NULL)
+	{
+		while (str[len])
+			len++;
+	}
+	return (len);
+}
+
+/**
+ * num_words - counts the number of words in a string
+ * @str: string to besplit
+ * Return: number of words
+ */
+
+int num_words(char *str)
+{
+	int i = 0, words = 0;
+
+	while (i <= len(str))
+	{
+		if ((str[i] != ' ') && (str[i] != '\0'))
+		{
+			i++;
+		}
+		else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
+		{
+			words += 1;
+			i++;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return (words);
+}
+
+/**
+ * strtow - splits words
+ * @str: string to be split
+ * Return: pointer to the array of splitted words
+ */
+
 char **strtow(char *str)
 {
-	int i, found, length;
-	char **word_array;
+	char **split;
+	int i, j = 0, temp = 0, size = 0, words = num_words(str);
 
-	if (str == NULL || str[0] == '\0' || (str[0] == ' ' && str[1] == '\0'))
+	if (words == 0)
 		return (NULL);
-
-	i = found = length = 0;
-	while (str[i])
+	split = (char **)malloc(sizeof(char *) * (words + 1));
+	if (split != NULL)
 	{
-		if (found == 0 && str[i] != ' ')
-			found = 1;
-		if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
+		for (i = 0; i <= len(str) && words; i++)
 		{
-			found = 0;
-			length++;
+			if ((str[i] != ' ') && (str[i] != '\0'))
+				size++;
+			else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
+			{
+				split[j] = (char *)malloc(sizeof(char) * size + 1);
+				if (split[j] != NULL)
+				{
+					while (temp < size)
+					{
+						split[j][temp] = str[(i - size) + temp];
+						temp++;
+					}
+					split[j][temp] = '\0';
+					size = temp = 0;
+					j++;
+				}
+				else
+				{
+					while (j-- >= 0)
+						free(split[j]);
+					free(split);
+					return (NULL);
+				}
+			}
 		}
-		i++;
+		split[words] = NULL;
+		return (split);
 	}
-
-	length += found == 1 ? 1 : 0;
-	if (length == 0)
+	else
 		return (NULL);
-
-	word_array = (char **)malloc(sizeof(char *) * (length + 1));
-	if (word_array == NULL)
-		return (NULL);
-
-	tokenize(word_array, str);
-	word_array[length] = NULL;
-	return (word_array);
-}
-
-/**
- * tokenize - Tokenizes the input string and stores words in an array.
- * @word_array: The array to store the words.
- * @input_str: The input string.
- */
-void tokenize(char **word_array, char *input_str)
-{
-	int i, j, start, found;
-
-	i = j = found = 0;
-	while (input_str[i])
-	{
-		if (found == 0 && input_str[i] != ' ')
-		{
-			start = i;
-			found = 1;
-		}
-
-		if (i > 0 && input_str[i] == ' ' && input_str[i - 1] != ' ')
-		{
-			split(word_array, input_str, start, i, j);
-			j++;
-			found = 0;
-		}
-		i++;
-	}
-
-	if (found == 1)
-		split(word_array, input_str, start, i, j);
-}
-
-/**
- * split - Splits a word and stores it in the array.
- * @word_array: The array to store the words.
- * @input_str: The input string.
- * @start: The starting index of the word.
- * @end: The ending index of the word.
- * @index: The index in the array.
- */
-void split(char **word_array, char *input_str, int start, int end, int index)
-{
-	int i, j;
-
-	i = end - start;
-	word_array[index] = (char *)malloc(sizeof(char) * (i + 1);
-
-	for (j = 0; start < end; start++, j++)
-		word_array[index][j] = input_str[start];
-	word_array[index][j] = '\0';
 }
