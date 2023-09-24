@@ -1,40 +1,22 @@
-#include<stdio.h>
+#include <stdio.h>
+
 /**
- * main - This is the function that is called at the program startup
- * Description: The main function is the first function that is executed
- * in the program when the execution is started
- * Return: retuns 0 (int value)
-  */
+ * main - displays all natural numbers that are
+ * multiples of 3 or 5 up to, but excluding, 1024
+ *
+ * Return: 0  success
+ */
+
 int main(void)
 {
-	/*
-	 * This is a program that prints all possible different combinations
-	 * of three digits
-	 */
-	int i;
-	int j;
-	int k;
+	int sum, num;
 
-	for (i = 48; i < 58; i++)
+	for (num = 0; num < 1024; ++num)
 	{
-		for (j = 48; j < 58; j++)
-		{
-			for (k = 48; k < 58; k++)
-			{
-
-				if (i != j && i != k && k != j && i < j && j < k)
-				{
-					putchar(i);
-					putchar(j);
-					putchar(k);
-					if (i == 55 && j == 56 && k == 57)
-						continue;
-					putchar(',');
-					putchar(' ');
-				}
-			}
-		}
+		if ((num % 3 == 0) || (num % 5 == 0))
+			sum += num;
 	}
-	putchar('\n');
+	printf("%d\n", sum);
+
 	return (0);
 }
