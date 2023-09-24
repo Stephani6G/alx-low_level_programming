@@ -1,6 +1,32 @@
 #include "main.h"
 
 /**
+ * rev_string - reverse array
+ * @n: integer params
+ * Return: 0
+ */
+
+void rev_string(char *n)
+{
+	int i = 0;
+	int j = 0;
+	char temp;
+
+	while (*(n + i) != '\0')
+	{
+		i++;
+	}
+	i--;
+
+	for (j = 0; j < i; j++, i--)
+	{
+		temp = *(n + j);
+		*(n + j) = *(n + i);
+		*(n + i) = temp;
+	}
+}
+
+/**
 * infinite_add -  function that adds two numbers
 * @n1: Pointer to the first character of num 1
 * @n2: Pointer to the first character of num 2
@@ -9,34 +35,50 @@
 *
 * Return: Pointer to the result of the string
 */
+
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int y = 0, z = 0;
-	int add = 0;
-	int x = size_r - 2;
+	int overflow = 0, i = 0, j = 0, digits = 0;
+	int val1 = 0, val2 = 0, temp_tot = 0;
 
-	while (n1[y + 1] != 0)
-		y++;
-	while (n2[z + 1] != 0)
-		z++;
-	r[size_r - 1] = 0;
 
-	while (x >= 0 && (y >= 0 || z >= 0))
+	while (*(n1 + i) != '\0')
+		i++;
+	while (*(n2 + j) != '\0')
+		j++;
+
+	i--;
+	j--;
+
+	if (j >= size_r || i >= size_r)
+		return (0);
+
+	while (j >= 0 || i >= 0 || overflow == 1)
 	{
-		add += (y < 0 ? '0' : n1[y]) + (z < 0 ? '0' : n2[z]);
-		add -= 2 * '0';
-		r[x] = add % 10 + '0';
-		add /= 10;
-		x--;
-		y--;
-		z--;
+		if (i < 0)
+			val1 = 0;
+		else
+			val1 = *(n1 + i) - '0';
+		if (j < 0)
+			val2 = 0;
+		else
+			val2 = *(n2 + j) - '0';
+		temp_tot = val1 + val2 + overflow;
+		if (temp_tot >= 10)
+			overflow = 1;
+		else
+			overflow = 0;
+		if (digits >= (size_r - 1))
+			return (0);
+		*(r + digits) = (temp_tot % 10) + '0';
+		digits++;
+		j--;
+		i--;
 	}
 
-	if ((x < y || x < z) || (x < 0 && add))
-	return (0);
-
-	add ? r[x] = add + '0' : 1;
-	x += add ? 0 : 1;
-
-	return (r + i);
+	if (digits == size_r)
+		return (0);
+	*(r + digits) = '\0';
+	rev_string(r);
+	return (r);
 }
