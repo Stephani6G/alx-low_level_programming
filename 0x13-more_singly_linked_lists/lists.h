@@ -1,6 +1,11 @@
 #ifndef LISTS_H
 #define LISTS_H
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stddef.h>
+
 /**
  * struct listint_s - singly linked list
  * @n: integer
@@ -62,3 +67,5 @@ size_t free_listint_safe(listint_t **h);
 
 /*Write a function that finds the loop in a linked list.*/
 listint_t *find_listint_loop(listint_t *head);
+
+#endif
