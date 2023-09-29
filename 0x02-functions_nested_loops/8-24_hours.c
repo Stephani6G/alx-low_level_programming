@@ -2,9 +2,11 @@
 
 /**
  * main - check the code
+ * jack_bauer - prints every time count
  * jack_bauer - function that prints every minute of the da
  * Return: Always 0.
  */
+
 void jack_bauer(void)
 {
 	int i, j, k, m;
