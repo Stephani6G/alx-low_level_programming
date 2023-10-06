@@ -3,80 +3,117 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+
+void error_file_from(char *, char *);
+void error_file_to(char *, char *);
+void error_close(int, char *);
 
 /**
-* __exit - prints error messages and exits with exit value
-* @error: num is either exit value or file descriptor
-* @s: str is a name, either of the two filenames
-* @fd: file descriptor
-* Return: 0 on success
-**/
+* copy_file - copies a file to another
+* @file_to: file to copy to
+* @file_from: file to copy from
+* Return: 0 success
+*/
 
-int __exit(int error, char *s, int fd)
+int copy_file(char *file_to, char *file_from)
 {
-	switch (error)
-	{
-		case 97:
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(error);
+	int to, from, wr, err, re;
+	char *buf;
 
-	case 98:
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", s);
-		exit(error);
-
-	case 99:
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", s);
-		exit(error);
-
-	case 100:
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-
-		exit(error);
-
-	default:
+	buf = malloc(sizeof(char) * 1024);
+	if (!buf)
 		return (0);
-}
+
+	from = open(file_from, O_RDONLY);
+	if (from == -1)
+		error_file_from(file_from, buf);
+
+	to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (to == -1)
+		error_file_to(file_to, buf);
+
+	re = read(from, buf, 1024);
+
+	do {
+	if (re == -1)
+		error_file_from(file_from, buf);
+	if (re == 0)
+		break;
+	wr = write(to, buf, re);
+	if (wr == -1)
+		error_file_to(file_to, buf);
+	re = read(from, buf, 1024);
+	} while (re > 0);
+
+	err = close(to);
+	if (err == -1)
+		error_close(to, buf);
+	err = close(from);
+	if (err == -1)
+		error_close(from, buf);
+
+	free(buf);
+	return (0);
 }
 
 /**
-* main - copies one file to another
-* @argc: should be 3 (./a.out copyfromfile copytofile)
-* @argv: first is file to copy from (fd_1), second is file to copy to (fd_2)
-* Return: 0 (success), 97-100 (exit value errors)
+* error_close - error procedure when issue with closing
+* @fd: integer where file is opened
+* @buf: buffer to free
+* Return: 0
+*/
+
+void error_close(int fd, char *buf)
+{
+	free(buf);
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+	exit(100);
+}
+
+/**
+* error_file_from - error procedure when issue with file from
+* @file_from: name of file from
+* @buf: buffer to free
+* Return: void
+*/
+
+void error_file_from(char *file_from, char *buf)
+{
+	free(buf);
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+	exit(98);
+}
+
+/**
+* error_file_to - error procedure when file to cant be created
+* @file_to: name of file to
+* @buf: buffer to free
+* Return: void
+*/
+
+void error_file_to(char *file_to, char *buf)
+{
+	free(buf);
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+	exit(99);
+}
+
+/**
+* main - main of our program
+* @argc: number of arugments
+* @argv: array of arguments
+* Return: 0
 */
 
 int main(int argc, char *argv[])
 {
-	int fd_1, fd_2, n_read, n_wrote;
-	char *buffer[1024];
-
 	if (argc != 3)
-	__exit(97, NULL, 0);
-
-
-fd_2 = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
-
-	if (fd_2 == -1)
-	__exit(99, argv[2], 0);
-
-
-fd_1 = open(argv[1], O_RDONLY);
-
-	if (fd_1 == -1)
-	__exit(98, argv[1], 0);
-
-
-	while ((n_read = read(fd_1, buffer, 1024)) != 0)
 	{
-		if (n_read == -1)
-			__exit(98, argv[1], 0);
-			n_wrote = write(fd_2, buffer, n_read);
-
-		if (n_wrote == -1)
-			_exit(99, argv[2], 0);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
 	}
-	close(fd_2) == -1 ? (__exit(100, NULL, fd_2)) : close(fd_2);
-	close(fd_1) == -1 ? (__exit(100, NULL, fd_1)) : close(fd_1);
-
+	copy_file(argv[2], argv[1]);
 	return (0);
 }
