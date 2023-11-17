@@ -1,14 +1,13 @@
-#include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
- * main -  a program that prints the minimum number
- * of coins to make change for an amount of money
- * @argc: number of command line arguments
- * @argv: an array containing a program with command line arguments
- * Return: 0 if no. passed is -ve, 1 when no. passed isnt 1
- */
-
+* main - prints the minimum number of coins to make chang
+* @argc: Number of command lines arguments
+* @argv: arrays  of programs for command line arguments
+*
+* Return: 0 for success or 1 for error
+*/
 int main(int argc, char *argv[])
 {
 	int cents, coins = 0;
