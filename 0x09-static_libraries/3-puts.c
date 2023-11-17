@@ -1,4 +1,6 @@
 #include "main.h"
+#include <string.h>
+#include <stdio.h>
 
 /**
  * _puts - Prints a string ollowed by a new line
@@ -6,6 +8,7 @@
  *
  * Return: Always void 0
  */
+
 void _puts(char *str)
 {
 	while (*str != '\0')
