@@ -15,7 +15,7 @@ char *create_buffer(char *filename)
 {
 	char *buffer;
 
-	buf = malloc(1024 * sizeof(char));
+	buffer = malloc(1024 * sizeof(char));
 
 	if (buffer == NULL)
 	{
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
 	buffer = create_buffer(argv[2]);
 	file_from = open(argv[1], O_RDONLY);
-	rd = read(file_from, buf, 1024);
+	rd = read(file_from, buffer, 1024);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	while (rd > 0)
